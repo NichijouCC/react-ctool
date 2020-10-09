@@ -4,7 +4,7 @@ interface Istate {
     Comp: ReactType
 }
 
-export class LazyComp extends Component<{ target: () => Promise<ComponentType<any>>, onloading?: React.ReactNode }, Istate> {
+export class LazyComp extends Component<{ target: () => Promise<any>, onloading?: React.ReactNode }, Istate> {
     state: Istate = {
         Comp: undefined
     };
@@ -20,6 +20,6 @@ export class LazyComp extends Component<{ target: () => Promise<ComponentType<an
 
     render() {
         const { Comp } = this.state;
-        return Comp ? <Comp /> : this.props.onloading;
+        return Comp ? <Comp /> : this.props.onloading ?? <div />;
     }
 }
